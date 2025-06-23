@@ -7,14 +7,34 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-  body {
-    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
-    color: #8cc9ff;
+  /* نضع خلفية الكانفس أسفل كل شيء */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    overflow-x: hidden;
     font-family: 'Poppins', Arial, sans-serif;
+    background: black;
+    color: #8cc9ff;
+    user-select: none;
+    position: relative;
+    z-index: 0;
+  }
+
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: black;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
     text-align: center;
     padding: 80px 20px;
-    margin: 0;
-    user-select: none;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .profile-img {
@@ -80,7 +100,6 @@
     box-shadow: none;
   }
 
-  /* iframe موسيقى مخفي */
   #musicIframe {
     width: 0;
     height: 0;
@@ -110,6 +129,9 @@
 </head>
 <body>
 
+<canvas id="starfield"></canvas>
+
+<div class="container">
   <img src="hat-man.jpg" alt="Profile" class="profile-img" />
   <h1>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</h1>
   <p>• From Erbil •</p>
@@ -119,18 +141,75 @@
   <button class="btn" id="playMusicBtn">تشغيل الموسيقى</button>
 
   <iframe id="musicIframe" src="https://www.youtube.com/embed/lPrfYD54ELM?enablejsapi=1&version=3" allow="autoplay" allow="encrypted-media" allowfullscreen></iframe>
+</div>
 
-  <script>
-    const playBtn = document.getElementById('playMusicBtn');
-    const iframe = document.getElementById('musicIframe');
+<script>
+  // نجوم متحركة خلفية Canvas
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
 
-    playBtn.addEventListener('click', () => {
-      // نضيف autoplay=1 في الرابط لتشغيل الموسيقى
-      iframe.src = "https://www.youtube.com/embed/lPrfYD54ELM?autoplay=1&enablejsapi=1&version=3";
-      playBtn.disabled = true;
-      playBtn.innerText = "الموسيقى تعمل الآن";
-    });
-  </script>
+  let width, height;
+  let stars = [];
+
+  function init() {
+    resize();
+    createStars(150);
+    animate();
+  }
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+  });
+
+  function createStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.2 + 0.3,
+        speed: Math.random() * 0.15 + 0.02,
+        alpha: Math.random() * 0.8 + 0.2,
+        direction: Math.random() < 0.5 ? 1 : -1,
+        twinkle: Math.random() * 0.02 + 0.005,
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let star of stars) {
+      star.alpha += star.twinkle * star.direction;
+      if(star.alpha <= 0.2 || star.alpha >= 1) star.direction *= -1;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+      ctx.shadowColor = 'white';
+      ctx.shadowBlur = 3;
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  init();
+
+  // تشغيل الموسيقى زر
+  const playBtn = document.getElementById('playMusicBtn');
+  const iframe = document.getElementById('musicIframe');
+
+  playBtn.addEventListener('click', () => {
+    iframe.src = "https://www.youtube.com/embed/lPrfYD54ELM?autoplay=1&enablejsapi=1&version=3";
+    playBtn.disabled = true;
+    playBtn.innerText = "الموسيقى تعمل الآن";
+  });
+</script>
 
 </body>
-</html></html>
+</html>
