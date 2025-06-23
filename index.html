@@ -4,48 +4,60 @@
   <meta charset="UTF-8">
   <title>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
       color: white;
-      text-align: center;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
     .container {
-      padding: 60px 20px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 60px;
     }
 
     .profile-img {
       width: 160px;
       height: 160px;
       border-radius: 50%;
-      border: 3px solid #FFD700;
-      box-shadow: 0 0 25px #FFD700;
+      border: 3px solid #00BFFF;
+      box-shadow: 0 0 25px #00BFFF;
       object-fit: cover;
     }
 
     h1 {
       margin: 20px 0 10px;
       font-size: 30px;
-      color: #FFD700;
-      text-shadow: 0 0 10px #FFD70055;
+      color: #00BFFF;
+      text-shadow: 0 0 10px #00BFFF55;
     }
 
     p {
       font-size: 18px;
-      color: #ccc;
+      color: #ddd;
       margin-bottom: 30px;
     }
 
     .btn {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin: 10px auto;
       background: transparent;
       color: white;
-      border: 2px solid #FFD700;
-      padding: 12px 24px;
-      margin: 10px 6px;
+      border: 2px solid #00BFFF;
+      padding: 12px 28px;
       border-radius: 30px;
       font-weight: bold;
       text-decoration: none;
@@ -53,9 +65,9 @@
     }
 
     .btn:hover {
-      background-color: #FFD700;
+      background-color: #00BFFF;
       color: black;
-      box-shadow: 0 0 15px #FFD700aa;
+      box-shadow: 0 0 15px #00BFFFaa;
     }
 
     #musicIframe {
@@ -64,6 +76,7 @@
   </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
   <div class="container">
     <img src="hat-man.jpg" alt="Profile" class="profile-img">
     <h1>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</h1>
@@ -73,7 +86,6 @@
     <a class="btn" href="https://instagram.com/n.hv" target="_blank">Instagram</a>
     <a class="btn" href="https://www.tiktok.com/@.i9hu" target="_blank">TikTok</a>
     <a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank">Snapchat</a>
-    <br>
     <a class="btn" onclick="playMusic()">🎵 تشغيل الموسيقى</a>
 
     <iframe id="musicIframe" width="0" height="0" src="https://www.youtube.com/embed/lPrfYD54ELM?autoplay=1" 
@@ -84,6 +96,53 @@
     function playMusic() {
       document.getElementById("musicIframe").style.display = "block";
     }
+
+    // نجوم متحركة
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    let w, h, stars = [];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = [];
+      for (let i = 0; i < 150; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.4 + 0.6,
+          d: Math.random() * 1
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = "#00BFFF";
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function animate() {
+      stars.forEach(star => {
+        star.y += star.d;
+        if (star.y > h) {
+          star.y = 0;
+          star.x = Math.random() * w;
+        }
+      });
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    resize();
+    animate();
+    window.addEventListener("resize", resize);
   </script>
 </body>
 </html>
