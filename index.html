@@ -5,145 +5,157 @@
   <title>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</title>
   <style>
     html, body {
-      margin: 0; padding: 0; height: 100%;
+      margin: 0;
+      padding: 0;
+      height: 100%;
       background: black;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       color: white;
     }
+
     canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
     }
+
     .container {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding-top: 5px; /* تقريبه للأمام */
       max-width: 360px;
-      margin: 0 auto;
+      margin: 10px auto 0; /* خفّضنا المسافة العلوية */
       line-height: 1.1;
     }
+
     .profile-img {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 3px solid #00BFFF;
-      box-shadow: 0 0 25px #00BFFF;
+      box-shadow: 0 0 20px #00BFFF;
       object-fit: cover;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
+
     h1 {
       margin: 5px 0 3px;
-      font-size: 28px;
+      font-size: 24px;
       color: #00BFFF;
       text-shadow: 0 0 10px #00BFFF55;
     }
+
     p {
-      font-size: 15px;
+      font-size: 14px;
       color: #ddd;
-      margin: 0 0 15px;
+      margin: 0 0 12px;
     }
+
     .btn {
       display: block;
       width: 100%;
-      margin: 5px 0;
+      margin: 4px 0;
       background: transparent;
       color: white;
       border: 2px solid #00BFFF;
-      padding: 10px 0;
+      padding: 9px 0;
       border-radius: 18px;
       font-weight: bold;
       text-decoration: none;
       transition: all 0.3s ease;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
     }
+
     .btn:hover {
       background-color: #00BFFF;
       color: black;
-      box-shadow: 0 0 15px #00BFFFaa;
+      box-shadow: 0 0 12px #00BFFFaa;
     }
+
     #audioPlayer {
       display: none;
     }
   </style>
 </head>
 <body>
-  <canvas id="stars"></canvas>
 
-  <div class="container">
-    <img src="hat-man.jpg" alt="Profile" class="profile-img" />
-    <h1>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</h1>
-    <p>From Erbil • Iraq</p>
+<canvas id="stars"></canvas>
 
-    <a class="btn" href="https://t.me/i_b_n_o" target="_blank">Telegram</a>
-    <a class="btn" href="https://instagram.com/n.hv" target="_blank">Instagram</a>
-    <a class="btn" href="https://www.tiktok.com/@.i9hu" target="_blank">TikTok</a>
-    <a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank">Snapchat</a>
-    
-    <button class="btn" onclick="playMusic()">🎵 تشغيل الموسيقى</button>
+<div class="container">
+  <img src="hat-man.jpg" alt="Profile" class="profile-img" />
+  <h1>𝗂𝖻𝗇 - 𝖴𝗍𝗁𝗆𝖺𝗇</h1>
+  <p>From Erbil • Iraq</p>
 
-    <audio id="audioPlayer" src="Parham_Salimi_Remix.mp3.mp3"></audio>
-  </div>
+  <a class="btn" href="https://t.me/i_b_n_o" target="_blank">Telegram</a>
+  <a class="btn" href="https://instagram.com/n.hv" target="_blank">Instagram</a>
+  <a class="btn" href="https://www.tiktok.com/@.i9hu" target="_blank">TikTok</a>
+  <a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank">Snapchat</a>
 
-  <script>
-    function playMusic() {
-      const audio = document.getElementById("audioPlayer");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+  <button class="btn" onclick="playMusic()">🎵 تشغيل الموسيقى</button>
+  <audio id="audioPlayer" src="Parham_Salimi_Remix.mp3.mp3"></audio>
+</div>
+
+<script>
+  function playMusic() {
+    const audio = document.getElementById("audioPlayer");
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
     }
+  }
 
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    let w, h, stars = [];
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
+  let w, h, stars = [];
 
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      stars = [];
-      for (let i = 0; i < 100; i++) {
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.2 + 0.5,
-          d: Math.random() * 0.3 + 0.1
-        });
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "#ffffff";
-      ctx.shadowBlur = 5;
-      ctx.shadowColor = "#00BFFF";
-      stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fill();
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.2 + 0.5,
+        d: Math.random() * 0.3 + 0.1
       });
     }
+  }
 
-    function animate() {
-      stars.forEach(star => {
-        star.y += star.d;
-        if (star.y > h) {
-          star.y = 0;
-          star.x = Math.random() * w;
-        }
-      });
-      draw();
-      requestAnimationFrame(animate);
-    }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = "#00BFFF";
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
 
-    resize();
-    animate();
-    window.addEventListener("resize", resize);
-  </script>
+  function animate() {
+    stars.forEach(star => {
+      star.y += star.d;
+      if (star.y > h) {
+        star.y = 0;
+        star.x = Math.random() * w;
+      }
+    });
+    draw();
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+  window.addEventListener("resize", resize);
+</script>
+
 </body>
 </html>
