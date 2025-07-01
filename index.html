@@ -31,9 +31,15 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 20px 20px 30px; /* ✅ أقرب للأعلى */
+      padding: 20px 20px 30px;
       max-width: 700px;
       margin: 0 auto;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .profile-img {
@@ -112,8 +118,6 @@
   <p>• From Erbil •</p>
 
   <a class="btn" href="https://t.me/i_b_n_o" target="_blank">Telegram</a>
-  <a class="btn" href="https://www.instagram.com/n.hv" target="_blank">Instagram</a>
-  <a class="btn" href="https://www.tiktok.com/@.i9hu" target="_blank">TikTok</a>
   <a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank">Snapchat</a>
 
   <!-- موسيقى بصيغة MP3 -->
@@ -122,7 +126,39 @@
 </div>
 
 <script>
-  // نجوم متحركة (تقدر تضيف سكريبت إضافي للأنميشن لو تحب)
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5,
+    d: Math.random() * 0.5 + 0.2
+  }));
+
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ffffff';
+    for (const star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fill();
+      star.y += star.d;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
 </script>
 
 </body>
