@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ali Adel 🖤</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+  <!-- Font + Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
     body, html {
       margin: 0; padding: 0; height: 100%;
       overflow-x: hidden;
@@ -25,6 +28,32 @@
       height: 100%;
       z-index: -1;
       background: black;
+    }
+
+    /* تأثير الضوء في الخلف */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #ffd70044 0%, transparent 80%);
+      transform: translate(-50%, -50%);
+      z-index: -2;
+      animation: pulse 5s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.3;
+      }
     }
 
     .container {
@@ -76,40 +105,76 @@
       text-shadow: 0 0 6px #3a75c0aa;
     }
 
+    .social-buttons {
+      margin-bottom: 30px;
+    }
+
     .btn {
       display: inline-block;
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
-      color: #222;
-      padding: 16px 40px;
-      margin: 10px 15px;
-      font-size: 20px;
+      padding: 16px 35px;
+      margin: 10px 12px;
+      font-size: 18px;
       font-weight: 700;
       border-radius: 40px;
       text-decoration: none;
-      box-shadow: 0 4px 15px #ffb600cc;
       transition: background 0.4s ease, transform 0.3s ease;
-      border: 2px solid #ffd700;
+      border: 2px solid transparent;
       user-select: none;
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: linear-gradient(135deg, #ffaa00, #ffd700);
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px #ffcb0088;
+    .btn i {
+      margin-right: 10px;
     }
 
-    #musicIframe {
-      width: 0;
-      height: 0;
-      border: 0;
-      display: block;
-      margin: 0 auto;
+    .btn.telegram {
+      background: #0088cc;
+      color: white;
+      border-color: #0088cc;
+    }
+
+    .btn.telegram:hover {
+      background: #007ab8;
+      box-shadow: 0 8px 20px #0088ccaa;
+    }
+
+    .btn.snapchat {
+      background: #fffc00;
+      color: #000;
+      border-color: #fffc00;
+    }
+
+    .btn.snapchat:hover {
+      background: #e5e000;
+      box-shadow: 0 8px 20px #fffc00aa;
+    }
+
+    .btn.instagram {
+      background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+      color: white;
+      border-color: #d62976;
+    }
+
+    .btn.instagram:hover {
+      background: linear-gradient(45deg, #d62976, #962fbf, #4f5bd5);
+      box-shadow: 0 8px 20px #d62976aa;
+    }
+
+    .btn.tiktok {
+      background: #010101;
+      color: #fff;
+      border-color: #ff0050;
+    }
+
+    .btn.tiktok:hover {
+      background: #ff0050;
+      color: #fff;
+      box-shadow: 0 8px 20px #ff0050aa;
     }
   </style>
 </head>
-<body>
 
+<body>
 <canvas id="starfield"></canvas>
 
 <div class="container">
@@ -117,14 +182,15 @@
   <h1>Ali Adel 🖤</h1>
   <p>• From Erbil •</p>
 
-<a class="btn" href="https://t.me/i_b_n_o" target="_blank">Telegram</a><br>
-<a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank">Snapchat</a><br>
-<a class="btn" href="https://www.instagram.com/8m7hh" target="_blank">Instagram</a><br>
-<a class="btn" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank">TikTok</a>
+  <div class="social-buttons">
+    <a class="btn telegram" href="https://t.me/i_b_n_o" target="_blank"><i class="fab fa-telegram-plane"></i>Telegram</a>
+    <a class="btn snapchat" href="https://snapchat.com/t/ZG3yDTOp" target="_blank"><i class="fab fa-snapchat-ghost"></i>Snapchat</a>
+    <a class="btn instagram" href="https://www.instagram.com/8m7hh" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+    <a class="btn tiktok" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+  </div>
 
-  <!-- موسيقى بصيغة MP3 -->
+  <!-- مشغل الموسيقى -->
   <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3"></audio>
-  <a class="btn" onclick="document.getElementById('musicPlayer').play()">Play Music</a>
 </div>
 
 <script>
@@ -161,7 +227,15 @@
     requestAnimationFrame(animateStars);
   }
   animateStars();
-</script>
 
+  // تشغيل الموسيقى تلقائيًا
+  window.addEventListener('load', () => {
+    const music = document.getElementById('musicPlayer');
+    music.volume = 0.1; // صوت منخفض
+    music.play().catch(e => {
+      console.log("Autoplay blocked by browser");
+    });
+  });
+</script>
 </body>
 </html>
