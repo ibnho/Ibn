@@ -103,6 +103,7 @@
       transition: 0.3s ease;
       box-shadow: 0 4px 10px #00000066;
       min-width: 160px;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -140,19 +141,26 @@
     <a class="btn" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
   </div>
 
-  <!-- Music -->
-  <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3" autoplay loop></audio>
+  <!-- زر تشغيل/إيقاف الموسيقى -->
+  <a class="btn" id="musicToggle" onclick="toggleMusic()">
+    <i class="fas fa-play"></i>تشغيل الموسيقى
+  </a>
+
+  <!-- مشغل الموسيقى -->
+  <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3" loop></audio>
+
+  <!-- صوت الزر -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5e277d8f59.mp3?filename=interface-click-124467.mp3"></audio>
 </div>
 
 <script>
+  // Canvas النجوم
   const canvas = document.getElementById("starfield");
   const ctx = canvas.getContext("2d");
-
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
 
@@ -178,8 +186,25 @@
     }
     requestAnimationFrame(animateStars);
   }
-
   animateStars();
+
+  // تشغيل/إيقاف الموسيقى + صوت الزر
+  const music = document.getElementById("musicPlayer");
+  const musicToggle = document.getElementById("musicToggle");
+  const clickSound = document.getElementById("clickSound");
+  let isPlaying = false;
+
+  function toggleMusic() {
+    clickSound.play();
+    if (isPlaying) {
+      music.pause();
+      musicToggle.innerHTML = '<i class="fas fa-play"></i>تشغيل الموسيقى';
+    } else {
+      music.play();
+      musicToggle.innerHTML = '<i class="fas fa-pause"></i>إيقاف الموسيقى';
+    }
+    isPlaying = !isPlaying;
+  }
 </script>
 </body>
 </html>
