@@ -1,61 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ali Adel 🖤</title>
-
+  
   <!-- Font + Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  
   <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
+    /* خطوط وألوان هادئة */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       overflow-x: hidden;
-      font-family: 'Poppins', Arial, sans-serif;
-      background: black;
-      color: #8cc9ff;
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1f36, #2e324a, #474c63);
+      background-size: 400% 400%;
+      animation: gradientShift 25s ease infinite;
+      color: #d1d8e0;
       user-select: none;
       position: relative;
       z-index: 0;
     }
 
-    #starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: black;
-    }
-
-    /* تأثير الضوء في الخلف */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #ffd70044 0%, transparent 80%);
-      transform: translate(-50%, -50%);
-      z-index: -2;
-      animation: pulse 5s infinite ease-in-out;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
       }
       50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 0.3;
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
       }
     }
 
+    /* نجوم ناعمة متوهجة */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      filter: drop-shadow(0 0 6px #a0a7b2aa);
+    }
+
+    /* الحاوية */
     .container {
       position: relative;
       z-index: 1;
@@ -67,175 +69,212 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
+    /* صورة الملف الشخصي */
     .profile-img {
       width: 170px;
       height: 170px;
       border-radius: 50%;
-      border: 5px solid #FFD700;
-      box-shadow: 0 0 40px 5px #ffd700aa;
+      border: 5px solid #3a4468;
+      box-shadow: 0 0 25px 6px #3a446866;
       object-fit: cover;
       margin: 0 auto 25px auto;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .profile-img:hover {
-      transform: scale(1.1) rotate(3deg);
-      box-shadow: 0 0 60px 10px #ffd700dd;
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 0 35px 10px #55608fbb;
     }
 
+    /* العنوان */
     h1 {
       margin: 0 0 10px;
       font-size: 36px;
       font-weight: 700;
       letter-spacing: 0.1em;
-      color: #ffd700;
-      text-shadow: 0 0 10px #ffd700bb;
+      color: #d1d8e0;
+      text-shadow: 0 0 10px #384263cc;
     }
 
+    /* الوصف */
     p {
       font-size: 20px;
       margin-bottom: 40px;
       font-style: italic;
-      color: #a0bfffcc;
+      color: #a3a9bbcc;
       letter-spacing: 0.05em;
-      text-shadow: 0 0 6px #3a75c0aa;
+      text-shadow: 0 0 6px #2f3551aa;
     }
 
+    /* أزرار التواصل */
     .social-buttons {
       margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 16px 35px;
-      margin: 10px 12px;
-      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      font-size: 17px;
       font-weight: 700;
       border-radius: 40px;
       text-decoration: none;
-      transition: background 0.4s ease, transform 0.3s ease;
+      transition: all 0.3s ease;
       border: 2px solid transparent;
-      user-select: none;
       cursor: pointer;
+      min-width: 160px;
+      color: #d1d8e0;
+      background: #444a6a;
+      box-shadow: 0 4px 10px #2e324a99;
+      text-shadow: 0 0 2px #00000088;
     }
 
     .btn i {
       margin-right: 10px;
+      font-size: 20px;
+      color: #adb5c4;
+      transition: color 0.3s ease;
     }
 
+    /* ألوان خاصة لكل منصة */
     .btn.telegram {
-      background: #0088cc;
-      color: white;
-      border-color: #0088cc;
+      background: #2464a4;
+      border-color: #1b4d7a;
+      color: #e0e7ff;
+      box-shadow: 0 6px 15px #16406aaa;
     }
-
     .btn.telegram:hover {
-      background: #007ab8;
-      box-shadow: 0 8px 20px #0088ccaa;
+      background: #1b4d7a;
+      box-shadow: 0 0 25px #1b4d7acc;
+      color: #bbd1ff;
+    }
+    .btn.telegram i {
+      color: #bbe1ff;
     }
 
     .btn.snapchat {
-      background: #fffc00;
-      color: #000;
-      border-color: #fffc00;
+      background: #5e6a42;
+      border-color: #4a5333;
+      color: #f3f6e9;
+      box-shadow: 0 6px 15px #3d462911;
     }
-
     .btn.snapchat:hover {
-      background: #e5e000;
-      box-shadow: 0 8px 20px #fffc00aa;
+      background: #4a5333;
+      box-shadow: 0 0 25px #4a533399;
+      color: #c7d3a7;
+    }
+    .btn.snapchat i {
+      color: #c7d3a7;
     }
 
     .btn.instagram {
-      background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
-      color: white;
-      border-color: #d62976;
+      background: #563d7c;
+      border-color: #3b2a52;
+      color: #dbd7f1;
+      box-shadow: 0 6px 15px #3b2a5211;
     }
-
     .btn.instagram:hover {
-      background: linear-gradient(45deg, #d62976, #962fbf, #4f5bd5);
-      box-shadow: 0 8px 20px #d62976aa;
+      background: #3b2a52;
+      box-shadow: 0 0 25px #3b2a5299;
+      color: #a698c9;
+    }
+    .btn.instagram i {
+      color: #a698c9;
     }
 
     .btn.tiktok {
-      background: #010101;
-      color: #fff;
-      border-color: #ff0050;
+      background: #1b1f3b;
+      border-color: #121533;
+      color: #cbd2f7;
+      box-shadow: 0 6px 15px #12153311;
     }
-
     .btn.tiktok:hover {
-      background: #ff0050;
-      color: #fff;
-      box-shadow: 0 8px 20px #ff0050aa;
+      background: #121533;
+      box-shadow: 0 0 25px #121533cc;
+      color: #98a3f1;
+    }
+    .btn.tiktok i {
+      color: #98a3f1;
     }
   </style>
 </head>
 
 <body>
-<canvas id="starfield"></canvas>
+  <canvas id="starfield"></canvas>
 
-<div class="container">
-  <img src="IMG_1454.png" alt="Profile" class="profile-img" />
-  <h1>Ali Adel 🖤</h1>
-  <p>• From Erbil •</p>
+  <div class="container">
+    <img src="IMG_1454.png" alt="Profile" class="profile-img" />
+    <h1>Ali Adel 🖤</h1>
+    <p>• From Erbil •</p>
 
-  <div class="social-buttons">
-    <a class="btn telegram" href="https://t.me/i_b_n_o" target="_blank"><i class="fab fa-telegram-plane"></i>Telegram</a>
-    <a class="btn snapchat" href="https://snapchat.com/t/ZG3yDTOp" target="_blank"><i class="fab fa-snapchat-ghost"></i>Snapchat</a>
-    <a class="btn instagram" href="https://www.instagram.com/8m7hh" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-    <a class="btn tiktok" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+    <div class="social-buttons">
+      <a class="btn telegram" href="https://t.me/i_b_n_o" target="_blank"
+        ><i class="fab fa-telegram-plane"></i>Telegram</a
+      >
+      <a class="btn snapchat" href="https://snapchat.com/t/ZG3yDTOp" target="_blank"
+        ><i class="fab fa-snapchat-ghost"></i>Snapchat</a
+      >
+      <a class="btn instagram" href="https://www.instagram.com/8m7hh" target="_blank"
+        ><i class="fab fa-instagram"></i>Instagram</a
+      >
+      <a class="btn tiktok" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank"
+        ><i class="fab fa-tiktok"></i>TikTok</a
+      >
+    </div>
+
+    <!-- مشغل الموسيقى -->
+    <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3" autoplay loop></audio>
   </div>
 
-  <!-- مشغل الموسيقى -->
-  <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3"></audio>
-</div>
+  <script>
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
 
-<script>
-  const canvas = document.getElementById('starfield');
-  const ctx = canvas.getContext('2d');
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  const stars = Array.from({ length: 120 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.5,
-    d: Math.random() * 0.5 + 0.2
-  }));
-
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ffffff';
-    for (const star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-      ctx.fill();
-      star.y += star.d;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
-      }
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    requestAnimationFrame(animateStars);
-  }
-  animateStars();
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-  // تشغيل الموسيقى تلقائيًا
-  window.addEventListener('load', () => {
-    const music = document.getElementById('musicPlayer');
-    music.volume = 0.1; // صوت منخفض
-    music.play().catch(e => {
-      console.log("Autoplay blocked by browser");
-    });
-  });
-</script>
+    const stars = Array.from({ length: 150 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.3,
+      d: Math.random() * 0.3 + 0.05,
+    }));
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      for (const star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+        star.y += star.d;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
 </body>
 </html>
