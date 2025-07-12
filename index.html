@@ -2,209 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ali Adel 🖤</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>𝐀𝐥𝐢 𝐀𝐝𝐢𝐥 🖤</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <style>
-    body, html {
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0a0f1b, #1b1f2d, #202636);
-      background-size: 400% 400%;
-      animation: backgroundShift 20s ease infinite;
-      color: #cdd5e1;
-      user-select: none;
-      overflow-x: hidden;
-      position: relative;
-      z-index: 0;
+      box-sizing: border-box;
     }
 
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: #bccad6;
+      color: #4a5061;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    #starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .container {
+    .card {
+      background-color: #4a5061;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 0 20px #aeb8c7aa;
       text-align: center;
-      padding: 40px 20px;
-      max-width: 720px;
-      margin: auto;
-      animation: fadeIn 1.4s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      max-width: 400px;
+      width: 100%;
+      animation: fadeIn 1.5s ease-out;
+      color: #d7dfe7;
     }
 
     .profile-img {
-      width: 160px;
-      height: 160px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
-      border: 4px solid #5e6a75;
+      border: 3px solid #8b9ab1;
       object-fit: cover;
-      box-shadow: 0 0 40px 6px #ff2d2d55;
-      margin-bottom: 25px;
-      transition: all 0.4s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 60px 10px #ff2d2daa;
+      box-shadow: 0 0 15px #aeb8c7aa;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 34px;
-      color: #e4e9f2;
-      margin: 10px 0;
-      text-shadow: 0 0 8px #ff2d2d33;
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #d7dfe7;
     }
 
     p {
-      font-size: 18px;
-      color: #a0aec0;
-      margin-bottom: 40px;
-      text-shadow: 0 0 4px #2d374866;
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #a0a8b8;
     }
 
-    .social-buttons {
+    .socials {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 15px;
       margin-bottom: 30px;
     }
 
     .btn {
+      background-color: #7a8ca6;
+      color: #f0f4f8;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 15px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 14px 32px;
-      font-size: 17px;
-      font-weight: 600;
-      border-radius: 35px;
-      border: 2px solid #303746;
-      background: #1d1f27;
-      color: #d3dae3;
-      text-decoration: none;
-      transition: 0.3s ease;
-      box-shadow: 0 4px 10px #00000066;
-      min-width: 160px;
-      cursor: pointer;
+      gap: 8px;
+      border: 2px solid transparent;
+      transition: 0.3s;
     }
 
     .btn:hover {
-      background: #ff2d2d;
-      color: white;
-      box-shadow: 0 0 18px #ff2d2dcc;
-      transform: translateY(-3px);
+      background-color: #59677c;
+      color: #f0f4f8;
+      border-color: #aeb8c7;
+      transform: translateY(-2px);
+      box-shadow: 0 0 8px #aeb8c7aa;
     }
 
     .btn i {
-      margin-right: 10px;
-      font-size: 20px;
-      color: #ff2d2d;
+      font-size: 18px;
+    }
+
+    .music-toggle {
+      margin-top: 20px;
+      background: none;
+      border: none;
+      color: #7a8ca6;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: underline;
       transition: 0.3s ease;
     }
 
-    .btn:hover i {
-      color: white;
+    .music-toggle:hover {
+      color: #59677c;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
     }
   </style>
 </head>
-
 <body>
-<canvas id="starfield"></canvas>
 
-<div class="container">
-  <img src="IMG_1454.png" alt="Profile" class="profile-img" />
-  <h1>Ali Adel 🖤</h1>
-  <p>• From Erbil •</p>
+  <div class="card">
+    <img src="IMG_1454.png" alt="Profile" class="profile-img" />
+    <h1>𝐀𝐥𝐢 𝐀𝐝𝐢𝐥 🖤</h1>
+    <p>From Erbil, Welcome to my universe!</p>
 
-  <div class="social-buttons">
-    <a class="btn" href="https://t.me/i_b_n_o" target="_blank"><i class="fab fa-telegram-plane"></i>Telegram</a>
-    <a class="btn" href="https://snapchat.com/t/ZG3yDTOp" target="_blank"><i class="fab fa-snapchat-ghost"></i>Snapchat</a>
-    <a class="btn" href="https://www.instagram.com/8m7hh" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-    <a class="btn" href="https://www.tiktok.com/@ali.adel.majeed1" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+    <div class="socials">
+      <a class="btn" href="https://t.me/i_b_n_o" target="_blank"><i class="fab fa-telegram"></i>Telegram</a>
+      <a class="btn" href="https://www.tiktok.com/@.9ajl" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+      <a class="btn" href="https://www.instagram.com/ali.adil8?igsh=Zm14NGp0N2hpZGx2&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+      <a class="btn" href="https://t.snapchat.com/xVCZFDC2" target="_blank"><i class="fab fa-snapchat-ghost"></i>Snapchat</a>
+    </div>
+
+    <button class="music-toggle" onclick="toggleMusic()">
+      ▶️ تشغيل / إيقاف الموسيقى
+    </button>
+
+    <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3" loop></audio>
   </div>
 
-  <!-- زر تشغيل/إيقاف الموسيقى -->
-  <a class="btn" id="musicToggle" onclick="toggleMusic()">
-    <i class="fas fa-play"></i>تشغيل الموسيقى
-  </a>
+  <script>
+    const music = document.getElementById("musicPlayer");
+    let isPlaying = false;
 
-  <!-- مشغل الموسيقى -->
-  <audio id="musicPlayer" src="Parham_Salimi_Remix.mp3.mp3" loop></audio>
-
-  <!-- صوت الزر -->
-  <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5e277d8f59.mp3?filename=interface-click-124467.mp3"></audio>
-</div>
-
-<script>
-  // Canvas النجوم
-  const canvas = document.getElementById("starfield");
-  const ctx = canvas.getContext("2d");
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  const stars = Array.from({ length: 150 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.2,
-    d: Math.random() * 0.3 + 0.05,
-  }));
-
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-    for (const star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-      ctx.fill();
-      star.y += star.d;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
       }
+      isPlaying = !isPlaying;
     }
-    requestAnimationFrame(animateStars);
-  }
-  animateStars();
+  </script>
 
-  // تشغيل/إيقاف الموسيقى + صوت الزر
-  const music = document.getElementById("musicPlayer");
-  const musicToggle = document.getElementById("musicToggle");
-  const clickSound = document.getElementById("clickSound");
-  let isPlaying = false;
-
-  function toggleMusic() {
-    clickSound.play();
-    if (isPlaying) {
-      music.pause();
-      musicToggle.innerHTML = '<i class="fas fa-play"></i>تشغيل الموسيقى';
-    } else {
-      music.play();
-      musicToggle.innerHTML = '<i class="fas fa-pause"></i>إيقاف الموسيقى';
-    }
-    isPlaying = !isPlaying;
-  }
-</script>
 </body>
 </html>
