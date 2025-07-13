@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مرحبا بك</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(135deg, #bccad6, #59677c);
+      color: #4a5061;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #4a5061;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      color: #7a8ca6;
+    }
+
+    button {
+      padding: 14px 40px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      border: none;
+      background-color: #7a8ca6;
+      color: #f0f4f8;
+      cursor: pointer;
+      box-shadow: 0 5px 15px #aeb8c7aa;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #59677c;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>مرحباً بك في موقع Ali Adel 🖤</h1>
+  <p>شكراً لزيارتك! اضغط على الزر للدخول</p>
+  <button onclick="enterSite()">دخول</button>
+
+  <script>
+    function enterSite() {
+      // استبدل 'main.html' باسم صفحتك الشخصية الحقيقية
+      window.location.href = 'main.html';
+    }
+  </script>
+
+</body>
+</html>
